@@ -51,12 +51,8 @@ async def get_capital_keyword_jobs(keyword: str):
                             detail='Keyword not valid for the database')
     else:
         collection = db[keyword]
-        items = collection.find()
-        found_items: list[dict] = []
-        for item in items:
-            current_item = {'city': item.get('city', ''), 'state': item.get(
-                'state', ''), 'jobs': item.get('jobs', {})}
-            found_items.append(current_item)
+        found_items: list[dict] = [{'city': i.get('city', ''), 'state': i.get(
+            'state', ''), 'jobs': i.get('jobs', {})} for i in collection.find()]
         return {keyword: found_items}
 
 
