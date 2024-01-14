@@ -85,3 +85,8 @@ async def get_capital_keyword_jobs(keyword: str, request: Request):
 async def get_capital_city_keyword_jobs(keyword: str, city: str):
     raise HTTPException(
         status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail="Not implemented yet")
+
+
+@app.get('/keywords')
+async def get_valid_keywords():
+    return {'valid_keywords': keywords}
