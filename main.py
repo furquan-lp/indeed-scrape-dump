@@ -2,6 +2,7 @@ from os import environ
 from sys import stderr
 from fastapi import FastAPI, HTTPException, status
 from fastapi.responses import HTMLResponse
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from typing import Final
 from pymongo.mongo_client import MongoClient
@@ -18,6 +19,14 @@ client: MongoClient = MongoClient(MONGO_DB_URI, server_api=ServerApi('1'))
 app = FastAPI(title='Indeed Dump API',
               summary='An API to access the January 2024 100k job dump scraped from Indeed',
               version='0.6.0')
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 try:
     client.admin.command('ping')
