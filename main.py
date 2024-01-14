@@ -48,9 +48,12 @@ async def get_capital_city_jobs(city: str):
 async def get_capital_keyword_jobs(keyword: str):
     if keyword not in keywords:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                            detail='Keyword not valid for the database')
+                            detail=f'Keyword \'{keyword}\' not valid for the database')
     else:
         collection = db[keyword]
+        if collection.count_documents({}) == 0:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                                detail=f'No jobs found for \'{keyword}\'')
         found_items: list[dict] = [{'city': i.get('city', ''), 'state': i.get(
             'state', ''), 'jobs': i.get('jobs', {})} for i in collection.find()]
         return {keyword: found_items}
