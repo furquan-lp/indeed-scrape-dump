@@ -13,8 +13,7 @@ load_dotenv()
 MONGO_DB_URI: Final[str] = environ['DUMP_DB_URI']
 MONGO_DB_NAME: Final[str] = environ['DUMP_DB_NAME']
 
-keywords: list[str] = ["software", "data scientist", "java", "python", "devops", "web developer", "backend", "cloud",
-                       "junior developer", "senior developer"]
+keywords: list[str] = environ['DUMP_DB_VALID_KEYWORDS'].split(', ')
 client: MongoClient = MongoClient(MONGO_DB_URI, server_api=ServerApi('1'))
 app = FastAPI(title='Indeed Dump API',
               summary='An API to access the January 2024 100k job dump scraped from Indeed',
