@@ -41,7 +41,8 @@ async def root() -> HTMLResponse:
 
 @app.get('/jobs/capitals/city/{city}')
 async def get_capital_city_jobs(city: str):
-    pass
+    raise HTTPException(
+        status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail="Not implemented yet")
 
 
 @app.get('/jobs/capitals/{keyword}')
@@ -61,4 +62,5 @@ async def get_capital_keyword_jobs(keyword: str):
 
 @app.get('/jobs/capitals/{keyword}/{city}')
 async def get_capital_city_keyword_jobs(keyword: str, city: str):
-    pass
+    raise HTTPException(
+        status_code=status.HTTP_405_METHOD_NOT_ALLOWED, detail="Not implemented yet")
