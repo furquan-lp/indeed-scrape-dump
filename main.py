@@ -18,7 +18,7 @@ keywords: list[str] = ["software", "data scientist", "java", "python", "devops",
 client: MongoClient = MongoClient(MONGO_DB_URI, server_api=ServerApi('1'))
 app = FastAPI(title='Indeed Dump API',
               summary='An API to access the January 2024 100k job dump scraped from Indeed',
-              version='0.5.0')
+              version='0.6.0')
 
 try:
     client.admin.command('ping')
