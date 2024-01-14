@@ -32,7 +32,7 @@ db: Database = client[MONGO_DB_NAME]
 limiter = Limiter(key_func=get_remote_address)
 app = FastAPI(title='Indeed Dump API',
               summary='An API to access the January 2024 100k job dump scraped from Indeed',
-              version='0.6.0')
+              version='0.6.8')
 origins = ["*"]
 app.add_middleware(
     CORSMiddleware,
